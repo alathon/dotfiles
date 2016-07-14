@@ -1,0 +1,79 @@
+// vim:ts=4:sw=4:et
+{
+    // splith split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.751412429378531,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 427,
+               "width": 658,
+               "x": 0,
+               "y": 0
+            },
+            "name": "fish  /home/alathon/workspace/mintebi/fullstack",
+            "percent": 0.528645833333333,
+            "swallows": [
+               {
+               // "class": "^Terminator$",
+               // "instance": "^terminator$",
+               // "title": "^fish\\ \\ \\/home\\/alathon\\/workspace\\/mintebi\\/fullstack$",
+               // "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 427,
+               "width": 658,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree  /home/alathon/workspace/mintebi/fullstack",
+            "percent": 0.471354166666667,
+            "swallows": [
+               {
+               // "class": "^Terminator$",
+               // "instance": "^terminator$",
+               // "title": "^i3\\-save\\-tree\\ \\ \\/home\\/alathon\\/workspace\\/mintebi\\/fullstack$",
+               // "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 427,
+       "width": 658,
+       "x": 0,
+       "y": 0
+    },
+    "name": "fish  /home/alathon/workspace/mintebi/fullstack",
+    "percent": 0.248587570621469,
+    "swallows": [
+       {
+       // "class": "^Terminator$",
+       // "instance": "^terminator$",
+       // "title": "^fish\\ \\ \\/home\\/alathon\\/workspace\\/mintebi\\/fullstack$",
+       // "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
