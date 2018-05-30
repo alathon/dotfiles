@@ -11,6 +11,8 @@
     ~/.tmux.conf: dotfiles/tmux.conf
     ~/.Xresources: dotfiles/Xresources
     ~/.i3blocks.conf: dotfiles/i3blocks.conf
+    ~/.config/nvim/init.vim: dotfiles/nvim/init.vim
+    ~/.config/nvim/autoload/plug.vim: dotfiles/nvim/autoload/plug.vim
     ~/.config/:
       glob: true
       path: dotfiles/config/*
