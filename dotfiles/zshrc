@@ -1,0 +1,143 @@
+
+# Path to your oh-my-zsh installation.
+export ZSH=/home/alathon/.oh-my-zsh
+
+# Java
+export JDK_HOME=/usr/lib/jvm/java-8-openjdk
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="minimal"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git github)
+
+# User configuration
+export SCALA_HOME="/usr/local/share/scala-2.11.8/"
+export ANDROID_HOME="/home/alathon/Android/Sdk/"
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# ssh
+ export SSH_KEY_PATH="~/.ssh/id_rsa"
+
+# FZF
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Path
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=/home/alathon/.local/bin:/home/alathon/.fzf/bin:/home/alathon/.npm-global/bin:$PATH
+
+# Dircolors
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+eval $( dircolors -b $HOME/.dircolors )
+
+alias pantou="tmux new-session -A -s pantou"
+alias git=hub
+alias tmux="tmux -2 $argv"
+alias vim="nvim"
+alias oldvim="vim"
+alias ls="ls++ $argv"
+alias clean-docker="sh ~/.local/bin/clean-docker.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf-scanned bookmark method. Searches through .cdg_paths and /etc/cdg_paths
+unalias cdg 2> /dev/null
+cdg() {
+  local dest_dir=$(cdscuts_glob_echo | fzf)
+  if [[ $dest_dir != '' ]]; then
+    cd "$dest_dir"
+  fi
+}
+
+fe() {
+  IFS='
+'
+  local declare files=($(fzf-tmux --query="$1" --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+  unset IFS
+}
+
+# Syntax highlighting based on LS_COLORS
+source $HOME/.config/zsh/zsh-syntax-highlighting-filetypes.zsh
+
+source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
+
+# OPAM configuration
+. ~/.opam/opam-init/init.zsh
+
+# SSH Keychain
+eval $(keychain --eval --quiet --noask id_rsa)
+
+
+. /home/alathon/workspace/diku/torch/install/bin/torch-activate
+
+# Paket alias for F#
+alias paket='mono ./.paket/paket.exe'
+unsetopt completealiases
+compdef _precommand mono
+zstyle ':completion::complete:paket:*' use-fallback no # Disable default zsh completion for Paket
+
+autoload -Uz compinit && compinit

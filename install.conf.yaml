@@ -1,0 +1,22 @@
+- defaults:
+  link:
+    relink: true
+
+- clean: ['~']
+
+- link:
+  ~/.zshrc: dotfiles/zshrc.conf
+  ~/.tmux.conf: dotfiles/tmux.conf
+  ~/.Xresources: dotfiles/Xresources
+  ~/.i3blocks.conf: dotfiles/i3blocks.conf
+  ~/.config/:
+    glob: true
+    path: config/*
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- defaults:
+  link:
+    create: true
+    relink: true

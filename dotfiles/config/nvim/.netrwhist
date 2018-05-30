@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/alathon/workspace/mintebi/fullstack/src/ducks'
+let g:netrw_dirhist_2='/home/alathon/workspace/mintebi/fullstack/src'
+let g:netrw_dirhist_3='/home/alathon/workspace/mintebi/fullstack/src/routes'
+let g:netrw_dirhist_4='/home/alathon/workspace/mintebi/fullstack/src/routes/Client'
+let g:netrw_dirhist_5='/home/alathon/workspace/mintebi/fullstack/src/routes/Client/routes'
+let g:netrw_dirhist_6='/home/alathon/workspace/mintebi/fullstack/src/routes/Client/routes/Search'
+let g:netrw_dirhist_7='/home/alathon/workspace/mintebi/fullstack/src/routes/Client/routes/Search/ducks'
+let g:netrw_dirhist_8='/home/alathon/workspace/mintebi/fullstack/server/lib'
