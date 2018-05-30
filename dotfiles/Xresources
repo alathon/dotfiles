@@ -22,6 +22,9 @@ URxvt.colorUL:      #87afd7
 ! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
 !-------------------------------------------------------------------------------
 
+! xterm: scrollback buffer size
+URxvt*SaveLines: 9999
+
 ! Disable ISO14755 mode to allow Ctrl+Shift
 URxvt*iso14755: False
 URxvt*iso14755_52: False

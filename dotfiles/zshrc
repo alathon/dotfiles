@@ -93,13 +93,6 @@ export PATH=/home/alathon/.local/bin:/home/alathon/.fzf/bin:/home/alathon/.npm-g
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 eval $( dircolors -b $HOME/.dircolors )
 
-alias pantou="tmux new-session -A -s pantou"
-alias git=hub
-alias tmux="tmux -2 $argv"
-alias vim="nvim"
-alias oldvim="vim"
-alias ls="ls++ $argv"
-alias clean-docker="sh ~/.local/bin/clean-docker.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -139,5 +132,13 @@ alias paket='mono ./.paket/paket.exe'
 unsetopt completealiases
 compdef _precommand mono
 zstyle ':completion::complete:paket:*' use-fallback no # Disable default zsh completion for Paket
+
+alias git=hub
+alias tmux="tmux -2 $argv"
+alias scaut='tmux new-session -A -s scaut'
+alias vim="nvim"
+alias oldvim="vim"
+alias ls="ls++ $argv"
+alias clean-docker="sh ~/.local/bin/clean-docker.sh"
 
 autoload -Uz compinit && compinit

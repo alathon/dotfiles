@@ -10,9 +10,6 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin('~/.config/nvim/plugged')
-" Elixir
-" Plug 'slashmili/alchemist.vim'
-" Plug 'elixir-lang/vim-elixir'
 
 " Not sure if I actually use these...
 Plug 'tpope/vim-obsession'
@@ -52,27 +49,25 @@ Plug 'pangloss/vim-javascript'
 Plug 'lervag/vimtex'
 call plug#end()
 
-" LargeFile
-let g:LargeFile = 3
-
-" Ale
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'scss': ['stylelint'],
-\   'haskell': ['stack-ghc-mod', 'hlint']
-\}
-
-" Latex
-let g:vimtex_latexmk_progname = 'nvr'
-let g:vimtex_view_method = 'general'
-let g:vimtex_view_general_viewer = 'qpdfview'
-let g:vimtex_view_general_options
-  \ = '--unique @pdf\#src:@tex:@line:@col'
-let g:vimtex_view_general_options_latexmk = '--unique'
-
-
+" leader and local leader
 let mapleader = " "
 let maplocalleader = ","
+
+" Bind K to search for word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
+
+" Paste mode
+map <F10> :set invpaste<CR>
+set pastetoggle=<F10>
+
+" Re-indent whole file
+map <F7> mzgg=G'z
+
+" Alternate to using <Esc>
+imap <S-Space> <Esc>
+
+" Turn off highlighting from current search
+nnoremap <F3> :noh<CR>
 
 " Visual mode deleting (cutting to the black hole)
 xnoremap p "_dP
@@ -82,6 +77,7 @@ xnoremap s "_d
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 
+" Common settings
 set background=dark
 colorscheme monokai 
 
@@ -133,6 +129,34 @@ set cursorline
 autocmd InsertEnter * set timeout   " Enable timeout in insert
 autocmd InsertLeave * set notimeout " Disable timeout in other modes
 
+" Add persistent undo
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
+" Ignored directories
+set wildignore=*.o,*.obj,.git,node_modules/**,bower_components/**,**/node_modules/**,_build/**,deps/**
+
+" LargeFile
+let g:LargeFile = 3
+
+" Ale
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'scss': ['stylelint'],
+\   'haskell': ['stack-ghc-mod', 'hlint']
+\}
+
+" Latex
+let g:vimtex_latexmk_progname = 'nvr'
+let g:vimtex_view_method = 'general'
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options
+  \ = '--unique @pdf\#src:@tex:@line:@col'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
+
 " Set vim to search using The Silver Searcher
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
@@ -141,19 +165,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" Bind K to search for word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
-
-" Paste mode
-map <F10> :set invpaste<CR>
-set pastetoggle=<F10>
-
-" Re-indent whole file
-map <F7> mzgg=G'z
-
-" Alternate to using <Esc>
-imap <S-Space> <Esc>
 
 " Buffergator
 " Use right side of screen
@@ -188,8 +199,6 @@ let g:airline#extensions#tabline#enabled = 1
 " automatically populate airline symbols dict with powerline symbols
 let g:airline_powerline_fonts = 1
 
-" Ignored directories
-set wildignore=*.o,*.obj,.git,node_modules/**,bower_components/**,**/node_modules/**,_build/**,deps/**
 
 " vim-closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
@@ -232,8 +241,6 @@ function! CheckLeftBuffers()
 endfunction
 autocmd BufEnter * call CheckLeftBuffers()
 
-" Turn off highlighting from current search
-nnoremap <F3> :noh<CR>
 
 " See http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
 " nnoremap <leader>_r :source $MYVIMRC<CR>
@@ -244,14 +251,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Show undotree
 nnoremap U :UndotreeShow<CR>:UndotreeFocus<CR>
 
-" Add persistent undo
-if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
-endif
 
 " Change to current directory from non-project files
-let g:rooter_change_directory_for_non_project_files = 'current' 
+let g:rooter_change_directory_for_non_project_files = 'current'
 
 " JS(X)/Web setup
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js" " Enable vim-closetag
@@ -269,8 +271,6 @@ if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.ocaml = '[^ ,;\t\[()\]]'
-au BufRead,BufNewFile *.ml,*.mli compiler ocaml
 
 " Deoplete tab complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -310,11 +310,3 @@ autocmd BufNew,BufRead *.tex call matchadd('ColorColumn', '\%82v', 100)
 autocmd BufNew,BufRead *.js call matchadd('ColorColumn', '\%122v', 100)
 autocmd BufNew,BufRead *.tex setlocal textwidth=79
 autocmd BufNew,BufRead *.js setlocal textwidth=119
-
-" OCaml Merlin
- let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
-
-" OCaml vim-slime
-let g:slime_target = "tmux"
