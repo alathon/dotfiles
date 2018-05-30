@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - link:
+    ~/.cdg_paths: dotfiles/cdg_paths
     ~/.zshrc: dotfiles/zshrc
     ~/.tmux.conf: dotfiles/tmux.conf
     ~/.Xresources: dotfiles/Xresources
