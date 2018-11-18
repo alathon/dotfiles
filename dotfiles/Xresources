@@ -23,7 +23,6 @@ URxvt.colorUL:      #87afd7
 !-------------------------------------------------------------------------------
 
 ! xterm: scrollback buffer size
-URxvt*SaveLines: 9999
 
 ! Disable ISO14755 mode to allow Ctrl+Shift
 URxvt*iso14755: False
@@ -38,7 +37,7 @@ URxvt.fading:               0
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
 URxvt.loginShell:           true
-URxvt.saveLines:            50
+URxvt.saveLines:            9999
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
 
